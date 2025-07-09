@@ -12,7 +12,9 @@
 This repository demonstrates a simple sponsorship paymaster flow on Ethereum using *[eth-infinitism/account-abstraction v0.7.0](https://github.com/eth-infinitism/account-abstraction/tree/v0.7.0)* It provides a reference implementation for deploying the [`VerifyingPaymaster.sol`](contracts/SimplePaymaster.sol) contract and interacting with it via `forge cast` commands.
 
 > [!INFO]
+
 > `VerifyingPaymaster.sol` only includes the functionality to sponsor gas fees for users interacting with a Dapp. 
+
 > It does not support payments using ERC20 tokens.
 
 
