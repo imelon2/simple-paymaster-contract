@@ -1,0 +1,17 @@
+{
+  "name": "simple-paymaster-contract",
+  "scripts": {
+    "compile": "./scripts/hh-wrapper compile",
+    "deploy": "hardhat ignition deploy ./ignition/modules/1_deploy_VerifyingPaymaster.ts",
+    "clean:local": "hardhat ignition wipe chain-1337 mSimplePaymaster#SimplePaymaster",
+    "deploy:creatx":"./scripts/deploy-creatx"
+  },
+  "devDependencies": {
+    "@nomicfoundation/hardhat-toolbox": "^6.0.0",
+    "hardhat": "^2.25.0"
+  },
+  "dependencies": {
+    "@account-abstraction/contracts": "^0.7.0",
+    "dotenv": "^17.1.0"
+  }
+}

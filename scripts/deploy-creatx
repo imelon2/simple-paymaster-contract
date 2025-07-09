@@ -1,0 +1,13 @@
+#!/bin/bash
+# 첫 번째 인자를 rpc 주소로 사용
+if [ -z "$1" ]; then
+  echo "Usage: $0 <rpc-url>"
+  exit 1
+fi
+RPC_URL="$1"
+
+# presigned tx json 다운받기
+json=$(curl -s https://raw.githubusercontent.com/pcaversaccio/createx/refs/heads/main/scripts/presigned-createx-deployment-transactions/signed_serialised_transaction_gaslimit_3000000_.json | tr -d '"')
+
+# 트랜잭션을 publish
+cast publish $json -r "$RPC_URL" 2>&1
