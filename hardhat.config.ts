@@ -10,6 +10,8 @@ SALT = process.env.SALT ?? SALT;
 let privateKey = ethers.keccak256(ethers.toUtf8Bytes("paymaster"));
 privateKey = process.env.PRIVATE_KEY ?? privateKey
 
+let providerUrl = "http://127.0.0.1:8545"
+providerUrl = process.env.PROVIDER_URL ?? providerUrl
 
 function getNetwork(url: string): {
   url: string;
@@ -40,7 +42,7 @@ const config: HardhatUserConfig = {
   },
   networks: {
     localhost: getNetwork("http://127.0.0.1:8545"),
-    custom: getNetwork(process.env.PROVIDER_URL!),
+    custom: getNetwork(providerUrl),
   },
   ignition: {
     strategyConfig: {
