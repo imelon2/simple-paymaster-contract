@@ -101,16 +101,8 @@ cast call 0x064Fbec1c03eC4004E7f9ADc5FAe2e2fB1857064 \
 - Deployer : *0xeD456e05CaAb11d66C4c797dD6c1D6f9A7F352b5*
 - Contract address : *0xba5Ed099633D3B313e4D5F7bdc1305d3c28ba5Ed*
 
-1. send transaction fee to CreateX deployer
-    ```
-    cast send 0xeD456e05CaAb11d66C4c797dD6c1D6f9A7F352b5 \
-    --value 300000000000000000 \
-    -r http://127.0.0.1:8545 \
-    --private-key 0xfefcc139ed357999ed60c6a013947328d52e7d9751e93fd0274a2bfae5cbcb12
-    ```
-
-2. deploy createx contract
-    ```
-    npm run deploy:creatx http://127.0.0.1:8545 0xfefcc139ed357999ed60c6a013947328d52e7d9751e93fd0274a2bfae5cbcb12
-    ```
+#### deploy createx contract
+```
+npm run deploy:creatx http://127.0.0.1:8545 0xfefcc139ed357999ed60c6a013947328d52e7d9751e93fd0274a2bfae5cbcb12
+```
 
