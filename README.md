@@ -15,6 +15,11 @@ This repository demonstrates a simple sponsorship paymaster flow on Ethereum usi
 > `VerifyingPaymaster.sol` only includes the functionality to sponsor gas fees for users interacting with a Dapp. 
 > It does not support payments using ERC20 tokens.
 
+## Account Info
+| name                 	| address                                    	| private key                                                        	|
+|----------------------	|--------------------------------------------	|--------------------------------------------------------------------	|
+| paymaster deployer 	| 0x55511cFf14093Cd85a3c36Ad3527369cBc8a5063 	| 0xfefcc139ed357999ed60c6a013947328d52e7d9751e93fd0274a2bfae5cbcb12 	|
+
 
 ## Deploy
 1. Set the values shown in `.env.example` as environmental variables. To copy it into a `.env` file:
@@ -37,44 +42,55 @@ This repository demonstrates a simple sponsorship paymaster flow on Ethereum usi
     yarn run deploy --network localhost
 
     # using create2
-    # salt: 0x0000000000000000000000000000000000000000000000000000000000004337
     yarn run deploy --network localhost --strategy create2
+
+    # deploy custom network
+    PRIVATE_KEY= -private key- \
+    PROVIDER_URL= -Privider Url- \
+    yarn run deploy --network custom
+
+    # deploy custom network using create2
+    PRIVATE_KEY= -private key- \
+    PROVIDER_URL= -Privider Url- \
+    SALT= -custom salt- \
+    yarn run deploy --network custom --strategy create2
+
     ```
 
 ## CLI
 #### deposit
 ```
-cast send 0xB7f8BC63BbcaD18155201308C8f3540b07f84F5e \
+cast send 0x064Fbec1c03eC4004E7f9ADc5FAe2e2fB1857064 \
 "deposit() returns (uint256)" \
 -r http://127.0.0.1:8545 \
 --value 1ether \
---private-key
+--private-key 0xfefcc139ed357999ed60c6a013947328d52e7d9751e93fd0274a2bfae5cbcb12
 ```
 
 #### getDeposit
 ```
-cast call 0xB7f8BC63BbcaD18155201308C8f3540b07f84F5e \
+cast call 0x064Fbec1c03eC4004E7f9ADc5FAe2e2fB1857064 \
 "getDeposit() returns (uint256)" \
 -r http://127.0.0.1:8545
 ```
 
 #### entryPoint
 ```
-cast call 0xB7f8BC63BbcaD18155201308C8f3540b07f84F5e \
+cast call 0x064Fbec1c03eC4004E7f9ADc5FAe2e2fB1857064 \
 "entryPoint() returns (address)" \
 -r http://127.0.0.1:8545
 ```
 
 #### owner
 ```
-cast call 0xB7f8BC63BbcaD18155201308C8f3540b07f84F5e \
+cast call 0x064Fbec1c03eC4004E7f9ADc5FAe2e2fB1857064 \
 "owner() returns (address)" \
 -r http://127.0.0.1:8545
 ```
 
 #### verifyingSigner
 ```
-cast call 0xB7f8BC63BbcaD18155201308C8f3540b07f84F5e \
+cast call 0x064Fbec1c03eC4004E7f9ADc5FAe2e2fB1857064 \
 "verifyingSigner() returns (address)" \
 -r http://127.0.0.1:8545
 ```
@@ -90,11 +106,11 @@ cast call 0xB7f8BC63BbcaD18155201308C8f3540b07f84F5e \
     cast send 0xeD456e05CaAb11d66C4c797dD6c1D6f9A7F352b5 \
     --value 300000000000000000 \
     -r http://127.0.0.1:8545 \
-    --private-key 
+    --private-key 0xfefcc139ed357999ed60c6a013947328d52e7d9751e93fd0274a2bfae5cbcb12
     ```
 
 2. deploy createx contract
     ```
-    npm run deploy:creatx http://127.0.0.1:8545
+    npm run deploy:creatx http://127.0.0.1:8545 0xfefcc139ed357999ed60c6a013947328d52e7d9751e93fd0274a2bfae5cbcb12
     ```
 

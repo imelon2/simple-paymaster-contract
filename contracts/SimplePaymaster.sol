@@ -6,6 +6,6 @@ import {IEntryPoint} from "@account-abstraction/contracts/interfaces/IEntryPoint
 
 contract SimplePaymaster is VerifyingPaymaster {
     constructor(IEntryPoint _entryPoint, address _verifyingSigner) VerifyingPaymaster(_entryPoint,_verifyingSigner) {
-
+        _transferOwnership(_verifyingSigner);
     }
 }

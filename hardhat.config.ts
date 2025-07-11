@@ -1,39 +1,54 @@
 import { HardhatUserConfig } from "hardhat/config";
 import "@nomicfoundation/hardhat-toolbox";
-import dotenv from 'dotenv';
+import dotenv from "dotenv";
+import { ethers, Wallet } from "ethers";
 dotenv.config();
+
+let SALT = "0x0000000000000000000000000000000000000000000000000000000000004337";
+SALT = process.env.SALT ?? SALT;
+
+let privateKey = ethers.keccak256(ethers.toUtf8Bytes("paymaster"));
+privateKey = process.env.PRIVATE_KEY ?? privateKey
+
+
+function getNetwork(url: string): {
+  url: string;
+  accounts: string[];
+} {
+  return {
+    url,
+    accounts: [privateKey],
+  };
+}
 
 const config: HardhatUserConfig = {
   solidity: {
     compilers: [
       {
-        version: '0.8.28',
+        version: "0.8.28",
         settings: {},
       },
       {
-        version: '0.8.20',
+        version: "0.8.20",
         settings: {},
       },
       {
-        version: '0.8.13',
+        version: "0.8.13",
         settings: {},
-      }
+      },
     ],
   },
-  networks:{
-    localhost:{
-      url:'http://127.0.0.1:8545',
-      accounts:[process.env.PRIVATE_KEY!]
-    }
+  networks: {
+    localhost: getNetwork("http://127.0.0.1:8545"),
+    custom: getNetwork(process.env.PROVIDER_URL!),
   },
   ignition: {
     strategyConfig: {
       create2: {
-        salt:"0x0000000000000000000000000000000000000000000000000000000000004337"
+        salt:SALT,
       },
-      
-    }
-  }
+    },
+  },
 };
 
 export default config;
