@@ -1,8 +1,7 @@
 import { HardhatUserConfig } from "hardhat/config";
 import "@nomicfoundation/hardhat-toolbox";
-import dotenv from "dotenv";
 import { ethers, Wallet } from "ethers";
-dotenv.config();
+
 
 let SALT = "0x0000000000000000000000000000000000000000000000000000000000004337";
 SALT = process.env.SALT ?? SALT;
