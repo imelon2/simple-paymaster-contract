@@ -7,10 +7,11 @@ let SALT = "0x0000000000000000000000000000000000000000000000000000000000004337";
 SALT = process.env.SALT ?? SALT;
 
 let privateKey = ethers.keccak256(ethers.toUtf8Bytes("paymaster"));
-privateKey = process.env.PRIVATE_KEY ?? privateKey
+privateKey = process.env.PRIVATE_KEY || privateKey
 
 let providerUrl = "http://127.0.0.1:8545"
-providerUrl = process.env.PROVIDER_URL ?? providerUrl
+providerUrl = process.env.PROVIDER_URL || providerUrl
+
 
 function getNetwork(url: string): {
   url: string;
